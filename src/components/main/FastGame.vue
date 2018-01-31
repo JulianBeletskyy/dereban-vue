@@ -25,8 +25,8 @@
                         <div class="form-group">
                             <label v-if="tab == 'teams'">Count in team</label>
                             <label v-else>Number of Leaders</label>
-                            <select class="form-control">
-                                <option></option>
+                            <select class="form-control" v-model="countInTeam">
+                                <option v-for="(i, num) in getArray()" :value="num + 1">{{ num + 1 }}</option>
                             </select>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-sm-12 text-center">
                         <div class="form-group">
-                            <button type="button" class="btn btn-outline-success">Dereban</button>
+                            <button type="button" class="btn btn-outline-success" @click="dereban()">Dereban</button>
                         </div>
                     </div>
                 </div>
@@ -49,17 +49,17 @@
 <script>
     import PlayerCell from './PlayerCell.vue';
     import PlayerAdd from './PlayerAdd.vue';
+    import Result from '../../Result.vue';
     import storage from '../../services/localstorage.js';
     import playList from '../../services/playlist.js';
-    //import langs from '../../services/langs.js';
-    import { mapGetters } from 'vuex';
 
     export default {
         name: 'FastGame',
         data() {
             return {
                 tab: 'teams',
-                players: []
+                players: [],
+                countInTeam: 1
             }
         },
         computed: {
@@ -78,12 +78,15 @@
         },
         components: {
             PlayerCell,
-            PlayerAdd
-            //langs
+            PlayerAdd,
+            Result
         },
         methods: {
+            getArray() {
+                return new Array(this.players.length);
+            },
             getPlayers() {
-                this.players = storage.get()
+                this.players = storage.get();
             },
             addPlayer(name) {
                 storage.save({'name':name, 'play': false});
@@ -92,6 +95,42 @@
             removePlayer(id) {
                 storage.remove(id);
                 this.getPlayers();
+            },
+            dereban() {
+                var playList = [];
+                for (var k in this.players) {
+                    if (this.players[k].play) {
+                        playList.push(this.players[k]);
+                    }
+                }
+
+                var countTeams = Math.floor(playList.length / this.countInTeam);
+                var len = playList.length;
+
+                for (let i = playList.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [playList[i], playList[j]] = [playList[j], playList[i]];
+                }
+                var results = {
+                    'list': [],
+                    'type': this.tab
+                };
+
+                if (this.tab == 'teams') {
+                    for (var i = 0; i < countTeams; i++) {
+                        results.list[i] = [];
+                        for (var j = 0; j < this.countInTeam; j++) {
+                            if (playList.length > 0) {
+                                results.list[i].push(playList.splice(Math.random() * len--,1)[0]);
+                            }
+                        }
+                    }
+                } else {
+                    for (var i = this.countInTeam; i > 0; i--) {
+                        results.list.push(playList.splice(Math.random() * len--, 1)[0]);
+                    }
+                }
+                router.push({name: 'Result', params: {results: results}});
             }
         }
     }

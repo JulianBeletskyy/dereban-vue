@@ -1,15 +1,28 @@
 var request = {
-	send(url, data, method) {
+	send(url, data, callback, method) {
 		method = method || 'post';
+		callback = callback || false;
 		data = data || {};
-		var baseUrl = 'http://dereban-api.da/api/v1/';
 
 		var req = axios.create({
 			baseURL: 'http://dereban-api.da/api/v1/'
 		});
 
-		req[method](baseUrl + url, data).then((response) => {
-            console.log(response)
+		req[method](url, data, callback).then((response) => {
+            (callback)(response);
+        }).catch((error) => {
+        	console.log(error);
+        });
+	},
+	getLangs(url, callback) {
+		var method = 'get';
+
+		var req = axios.create({
+			baseURL: ''
+		});
+
+		req[method](url, {}, callback).then((response) => {
+            (callback)(response.data);
         }).catch((error) => {
         	console.log(error);
         });

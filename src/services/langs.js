@@ -1,6 +1,12 @@
 var langs = {
-	get(data) {
-		console.log(data);
+	get(key) {
+		request.getLangs('src/langs/uk.json', function(data) {
+			for (var k in data) {
+				if (key.toLowerCase() == k.toLowerCase()) {
+					key = data[k];
+				}
+			}
+		}, 'get');
 	}
 };
 
