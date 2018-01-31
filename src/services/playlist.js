@@ -1,8 +1,18 @@
 var playList = {
 	result: [],
+	playList: {
+		'list': [],
+		'type': ''
+	},
 	add(user) {
 		this.result.push(user);
-		console.log(this.result);
+	},
+	addResults(list, type) {
+		this.playList.list = list;
+		this.playList.type = type;
+	},
+	getResults() {
+		return this.playList;
 	},
 	remove(id) {
 		for (var k in this.result) {
@@ -23,7 +33,6 @@ var playList = {
 		return this.result;
 	},
 	getCount() {
-		console.log(this.result);
 		return this.result.length;
 	}
 };

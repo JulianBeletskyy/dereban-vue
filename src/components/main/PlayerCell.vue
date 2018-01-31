@@ -3,7 +3,7 @@
         <div class="list-group" @click="choosePlayer(player)">
             <div class="list-group-item" :class="{'list-group-item-success': player.play, 'list-group-item-action': ! player.play}">
                 <span>{{ player.name }}</span>
-                <i class="fas fa-trash float-right text-danger" @click="removePlayer(player.id)"></i>
+                <i class="fas fa-trash float-right text-danger" @click="funcRemove(player.id)"></i>
             </div>
         </div>
     </div>
@@ -25,10 +25,6 @@
             choosePlayer(player) {
                 player.play = ! player.play;
                 player.play ? playList.add(player) : playList.remove(player.id);
-                //this.$toastr.success('Message', 'Title');
-            },
-            removePlayer(id) {
-                this.funcRemove(id);
             }
         }
     }
