@@ -36,6 +36,18 @@ button {
   /*border-color: #17a2b8;*/
 }
 
+.swal2-container {
+  padding: 15px;
+}
+
+.swal2-container.swal2-shown {
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+.box-shadow-modal {
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
 .main-body {
   position: fixed;
   height: 100%;

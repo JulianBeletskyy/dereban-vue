@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="list-body">
-                            <PlayerCell v-for="player in players" :player="player" :funcRemove="removePlayer"/>
+                            <PlayerCell v-for="(player, i) in players" :key="player.id" :player="player" :funcRemove="removePlayer"/>
                         </div>
                     </div>
                     <div class="col-sm-12 text-center">

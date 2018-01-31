@@ -6,19 +6,26 @@ import Result from '../Result.vue';
 
 Vue.use(Router);
 
+import router from '../router';
+Vue.router = router;
+window.router = router;
+
 export default new Router({
 	mode: 'history',
 	scrollBehavior: () => ({ y: 0 }),
 	routes: [
 		{
+			type: 'scope',
 			path: '/',
-			//name: 'Main',
-			//component: Main
+			name: 'Dashboard',
+			component: Dashboard,
+			auth: true
 		},
 		{
-			path: '/dashboard',
-			//name: 'Dashboard',
-			//component: Dashboard
+			path: '/',
+			name: 'Main',
+			component: Main,
+			auth: false
 		},
 		{
 			path: '/results',
@@ -32,3 +39,11 @@ export default new Router({
 		}
 	]
 });
+
+router.beforeEach((to, from, next) => {
+	if (to.name == 'Dashboard') {
+		next({name: 'Main'});
+		next();
+	}
+	next();
+})

@@ -45,8 +45,12 @@
         },
         methods: {
             signIn() {
-                request.send('user/register', this.user, 'post');
+                console.log(this.user);
+                //logger.info('testing');
             }
+        },
+        components: {
+            
         }
     }
 </script>
