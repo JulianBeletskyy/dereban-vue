@@ -9,7 +9,7 @@ var request = {
 		});
 
 		req[method](url, data, callback).then((response) => {
-            (callback)(response);
+            (callback)(response.data.data);
         }).catch((error) => {
         	console.log(error);
         });

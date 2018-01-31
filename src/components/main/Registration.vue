@@ -4,7 +4,7 @@
             Registration
         </div>
         <div class="card-body">
-            <form name="form" novalidate="novalidate" method="post">
+            <form name="form" novalidate="novalidate">
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
@@ -45,8 +45,26 @@
         },
         methods: {
             signIn() {
-                console.log(this.user);
-                //logger.info('testing');
+                var error = 1;
+                if ( ! this.user.email) {
+                    logger.error('Email is required');
+                    error = 0;
+                }
+                if ( ! this.user.password) {
+                    logger.error('Password is required');
+                    error = 0;
+                }
+                if (error) {
+                    request.send('user/login', this.user, (data) => {
+                        if (data.token) {
+                            this.$cookie.set('token', data.token);
+                            logger.success('You are in', 'center', false, ' ');
+                            setTimeout(() => {
+                                location.href = '/';
+                            }, 1200);
+                        }
+                    }, 'post');
+                }
             }
         },
         components: {

@@ -101,10 +101,9 @@
                 for (var k in this.players) {
                     if (this.players[k].play) {
                         playList.push(this.players[k]);
-                    }
+                    } 
                 }
 
-                var countTeams = Math.floor(playList.length / this.countInTeam);
                 var len = playList.length;
 
                 for (let i = playList.length - 1; i > 0; i--) {
@@ -117,6 +116,12 @@
                 };
 
                 if (this.tab == 'teams') {
+                    var countTeams = Math.floor(playList.length / this.countInTeam);
+
+                    if (countTeams < 2) {
+                        return logger.error('Less then two teams');
+                    }
+
                     for (var i = 0; i < countTeams; i++) {
                         results.list[i] = [];
                         for (var j = 0; j < this.countInTeam; j++) {

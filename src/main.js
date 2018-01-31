@@ -9,8 +9,14 @@ import Dashboard from './Dashboard.vue'
 
 Vue.use(BootstrapVue);
 
+
+
 import { default as swal } from 'sweetalert2'
 window.swal = swal;
+
+/*import VueCookie from 'vue-cookie';
+Vue.use(VueCookie);
+window.VueCookie = VueCookie;*/
 
 import router from './router';
 Vue.router = router;

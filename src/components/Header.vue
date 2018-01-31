@@ -16,7 +16,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <b-dropdown id="ddown-right" right text="Sign In" variant="btn btn-outline-success">
+                            <button v-if="logged" @click="logOut" class="btn btn-outline-success my-2 my-sm-0">Log Out</button>
+                            <b-dropdown v-if="! logged" id="ddown-right" right text="Sign In" variant="btn btn-outline-success">
                                 <div>
                                     <form name="form" class="px-4 py-3">
                                         <div class="form-group">
@@ -47,7 +48,19 @@
         name: 'Header',
         data () {
             return {
-                
+                logged: false
+            }
+        },
+        created () {
+            this.logged = VueCookie.get('token');
+        },
+        methods: {
+            logOut () {
+                VueCookie.delete('token');
+                logger.success('You are in', 'center');
+                setTimeout(() => {
+                    location.href = '/';
+                }, 1200);
             }
         }
     }

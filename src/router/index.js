@@ -10,6 +10,10 @@ import router from '../router';
 Vue.router = router;
 window.router = router;
 
+import VueCookie from 'vue-cookie';
+Vue.use(VueCookie);
+window.VueCookie = VueCookie;
+
 export default new Router({
 	mode: 'history',
 	scrollBehavior: () => ({ y: 0 }),
@@ -17,15 +21,13 @@ export default new Router({
 		{
 			type: 'scope',
 			path: '/',
-			name: 'Dashboard',
-			component: Dashboard,
-			auth: true
+			name: VueCookie.get('token') ? 'Dashboard' : 'Main',
+			component: VueCookie.get('token') ? Dashboard : Main
 		},
 		{
 			path: '/',
 			name: 'Main',
-			component: Main,
-			auth: false
+			component: Main
 		},
 		{
 			path: '/results',
@@ -39,11 +41,3 @@ export default new Router({
 		}
 	]
 });
-
-router.beforeEach((to, from, next) => {
-	if (to.name == 'Dashboard') {
-		next({name: 'Main'});
-		next();
-	}
-	next();
-})
