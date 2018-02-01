@@ -4,7 +4,7 @@
             Registration
         </div>
         <div class="card-body">
-            <form name="form" novalidate="novalidate" method="post">
+            <form name="form" novalidate="novalidate">
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form> 
-            <button class="btn btn-outline-success" @click="signIn">Sign Up</button>
+            <button class="btn btn-outline-success">Sign Up</button>
         </div>
     </div>
 </template>
@@ -44,10 +44,7 @@
             }
         },
         methods: {
-            signIn() {
-                console.log(this.user);
-                //logger.info('testing');
-            }
+            
         },
         components: {
             
