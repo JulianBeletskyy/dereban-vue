@@ -1,12 +1,12 @@
 <template>
-	<form id="FormSignIn" name="form" class="px-4 py-3">
+	<form id="FormSignIn" name="FormSignIn" class="px-4 py-3">
         <div class="form-group">
 			<label>Email</label>
-			<input name="email" class="form-control mr-sm-2" v-model="user.email" type="text" placeholder="email@example.com" required="required" />
+			<input name="email" v-validate="'required|email'" class="form-control mr-sm-2" v-model="user.email" placeholder="email@example.com" />
         </div>
         <div class="form-group">
 			<label>Password</label>
-			<input name="password" class="form-control mr-sm-2" v-model="user.password" type="password" required="required" />
+			<input name="password" v-validate="'required'" class="form-control mr-sm-2" v-model="user.password" type="password" required="required" />
         </div>
         <div class="d-flex">
             <button type="button" class="btn btn-outline-success my-2 my-sm-0" @click="signIn">Sign In</button>
@@ -28,36 +28,29 @@
 		methods: {
 			signIn() {
 				var error = 1;
-				if ( ! this.user.email) {
-					error = 0;
-				}
-				if ( ! this.user.password) {
-					error = 0;
-				}
+				error *= validator.check(this);
 				if (error) {
 					request.send('user/login', this.user, (data) => {
 						if (data.token) {
 							this.$cookie.set('token', data.token);
-							alert.success('You are in', 'center', false, ' ');
+							alert.success('You are in');
 							setTimeout(() => {
 								location.href = '/';
 							}, 1200);
 						}
 					}, 'post');
 				}
-			},
-			test (event) {
-				event.stopPropagation();
 			}
 		}
 	}
 </script>
 
-<style lang="css">
+<style scoped>
+	.dropdown-item,
 	.dropdown-item:hover,
 	.dropdown-item:active,
 	.dropdown-item:focus {
-		background-color: inherit;
+		background-color: #fff;
 		text-align: right;
 		border: 0;
 		outline: none;

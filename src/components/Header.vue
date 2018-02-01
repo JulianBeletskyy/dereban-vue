@@ -1,12 +1,12 @@
 <template>
     <header class="header fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <b-navbar toggleable="lg" type="dark" variant="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Dereban</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <b-navbar-brand>
+                    <router-link to="/" class="align-self-center ml-auto">Dereban</router-link>
+                </b-navbar-brand>
+                <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+                <b-collapse is-nav id="nav_collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mr-2">
                             <select class="form-control">
@@ -22,9 +22,9 @@
                             </b-dropdown>
                         </li>
                     </ul>
-                </div>
+                </b-collapse>
             </div>
-        </nav>
+        </b-navbar>
     </header>
 </template>
 
@@ -44,7 +44,7 @@
         methods: {
             logOut () {
                 VueCookie.delete('token');
-                alert.success('You are out', 'center');
+                alert.success('You are out');
                 setTimeout(() => {
                     location.href = '/';
                 }, 1200);
@@ -56,6 +56,9 @@
     }
 </script>
 
-<style>
-
+<style scoped>
+    .navbar-brand a {
+        color: #fff;
+        text-decoration: none;
+    }
 </style>

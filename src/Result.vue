@@ -32,7 +32,7 @@
 			if ( ! this.results) {
 				router.push('/');
 			} else {
-				alert.success('Game successfully created', 'center', 1500);
+				alert.success('Game successfully created');
 			}
 		},
 		props: ['results'],

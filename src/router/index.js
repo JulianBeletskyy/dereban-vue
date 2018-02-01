@@ -34,17 +34,10 @@ export default new Router({
 			name: 'Result',
 			component: Result,
 			props: true
-		}/*,
+		},
 		{
 			path: '/*',
 			redirect: '/'
-		}*/
+		}
 	]
 });
-
-router.afterEach((to, from) => {
-  console.log('Signal Vue root to close dropdown');
-  // false will cause any open dropdown to close
-  console.log(router.app.$emit());
-  this.$root.$emit('shown::dropdown', false);
-})
