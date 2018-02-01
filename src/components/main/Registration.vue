@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form> 
-            <button class="btn btn-outline-success" @click="signIn">Sign Up</button>
+            <button class="btn btn-outline-success">Sign Up</button>
         </div>
     </div>
 </template>
@@ -44,28 +44,7 @@
             }
         },
         methods: {
-            signIn() {
-                var error = 1;
-                if ( ! this.user.email) {
-                    logger.error('Email is required');
-                    error = 0;
-                }
-                if ( ! this.user.password) {
-                    logger.error('Password is required');
-                    error = 0;
-                }
-                if (error) {
-                    request.send('user/login', this.user, (data) => {
-                        if (data.token) {
-                            this.$cookie.set('token', data.token);
-                            logger.success('You are in', 'center', false, ' ');
-                            setTimeout(() => {
-                                location.href = '/';
-                            }, 1200);
-                        }
-                    }, 'post');
-                }
-            }
+            
         },
         components: {
             

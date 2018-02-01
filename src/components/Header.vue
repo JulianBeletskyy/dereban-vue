@@ -18,22 +18,7 @@
                         <li class="nav-item">
                             <button v-if="logged" @click="logOut" class="btn btn-outline-success my-2 my-sm-0">Log Out</button>
                             <b-dropdown v-if="! logged" id="ddown-right" right text="Sign In" variant="btn btn-outline-success">
-                                <div>
-                                    <form name="form" class="px-4 py-3">
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input name="email" class="form-control mr-sm-2" type="text" placeholder="email@example.com" required="required" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input name="password" class="form-control mr-sm-2" type="password" required="required" />
-                                        </div>
-                                        <div class="d-flex">
-                                            <a href="javascript:;" class="btn btn-outline-success my-2 my-sm-0">Sign In</a>
-                                            <a href="/recovery" class="align-self-center ml-auto">Forgot password</a>
-                                        </div>
-                                    </form>
-                                </div>
+                                <FormSignIn/>
                             </b-dropdown>
                         </li>
                     </ul>
@@ -44,6 +29,8 @@
 </template>
 
 <script>
+    import FormSignIn from './FormSignIn.vue';
+
     export default {
         name: 'Header',
         data () {
@@ -57,11 +44,14 @@
         methods: {
             logOut () {
                 VueCookie.delete('token');
-                logger.success('You are in', 'center');
+                alert.success('You are out', 'center');
                 setTimeout(() => {
                     location.href = '/';
                 }, 1200);
             }
+        },
+        components: {
+            FormSignIn
         }
     }
 </script>

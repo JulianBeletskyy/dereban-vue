@@ -1,4 +1,4 @@
-var logger = {
+var alert = {
 	obj: {
 		title: '',
 		type: 'info',
@@ -48,6 +48,6 @@ var logger = {
 	}
 };
 
-module.exports = logger;
+module.exports = alert;
 
-module.exports.default = logger;
+module.exports.default = alert;

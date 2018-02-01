@@ -1,15 +1,11 @@
 import Vue from 'vue'
 import BootstrapVue from "bootstrap-vue"
 import App from './App.vue'
-import Logger from './components/Logger.vue'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
-import Dashboard from './Dashboard.vue'
 
 Vue.use(BootstrapVue);
-
-
 
 import { default as swal } from 'sweetalert2'
 window.swal = swal;
@@ -39,9 +35,9 @@ import request from './services/request.js';
 Vue.use(request);
 window.request = request;
 
-import logger from './services/logger.js';
-Vue.use(logger);
-window.logger = logger;
+import alert from './services/alert.js';
+Vue.use(alert);
+window.alert = alert;
 
 import langs from './services/langs.js';
 Vue.use(langs);
@@ -57,3 +53,9 @@ const app = new Vue({
 	template: '<App/>',
     components: { App },
 })
+
+router.beforeEach((to, from, next) => {
+	console.log(to);
+	console.log(from);
+	next();
+});

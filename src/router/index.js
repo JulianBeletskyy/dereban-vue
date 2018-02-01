@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Main from '../Main.vue';
 import Dashboard from '../Dashboard.vue';
 import Result from '../Result.vue';
+import Recovery from '../Recovery.vue';
 
 Vue.use(Router);
 
@@ -19,25 +20,31 @@ export default new Router({
 	scrollBehavior: () => ({ y: 0 }),
 	routes: [
 		{
-			type: 'scope',
 			path: '/',
 			name: VueCookie.get('token') ? 'Dashboard' : 'Main',
 			component: VueCookie.get('token') ? Dashboard : Main
 		},
 		{
-			path: '/',
-			name: 'Main',
-			component: Main
+			path: '/recovery',
+			name: 'Recovery',
+			component: Recovery
 		},
 		{
 			path: '/results',
 			name: 'Result',
 			component: Result,
 			props: true
-		},
+		}/*,
 		{
 			path: '/*',
 			redirect: '/'
-		}
+		}*/
 	]
 });
+
+router.afterEach((to, from) => {
+  console.log('Signal Vue root to close dropdown');
+  // false will cause any open dropdown to close
+  console.log(router.app.$emit());
+  this.$root.$emit('shown::dropdown', false);
+})
