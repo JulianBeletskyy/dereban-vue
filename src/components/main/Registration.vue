@@ -9,7 +9,7 @@
                     <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input type="email" class="form-control" v-model="user.email" placeholder="email@example.com" required="required" />
+                            <input type="email" v-validate="'required|email'" class="form-control" v-model="user.email" placeholder="email@example.com" required="required" />
                             <span class="input-group-append">
                                 <span class="far fa-envelope input-group-text" area-hidden="true"></span>
                             </span>
@@ -20,7 +20,7 @@
                     <label for="inputPassword" class="col-sm-3 col-form-label">Password:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input type="password" class="form-control" v-model="user.password" required="required" placeholder="Password" ng-minlength="6">
+                            <input type="password" v-validate="'required|min:6'" class="form-control" v-model="user.password" placeholder="Password" required="required" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <span class="fas fa-unlock"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form> 
-            <button class="btn btn-outline-success">Sign Up</button>
+            <button class="btn btn-outline-success" @click="signUp">Sign Up</button>
         </div>
     </div>
 </template>
@@ -44,7 +44,9 @@
             }
         },
         methods: {
-            
+            signUp () {
+                console.log(this.user);
+            }
         },
         components: {
             

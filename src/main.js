@@ -53,6 +53,10 @@ window.validator = validator;
 import toastr from 'toastr';
 window.toastr = toastr;
 
+import logger from './services/logger.js';
+Vue.use(logger);
+window.logger = logger;
+
 import Vuex from 'vuex';
 
 Vue.use(Vuex);

@@ -27,9 +27,7 @@
 	  	},
 		methods: {
 			signIn() {
-				var error = 1;
-				error *= validator.check(this);
-				if (error) {
+				if (validator.check(this)) {
 					request.send('user/login', this.user, (data) => {
 						if (data.token) {
 							this.$cookie.set('token', data.token);
