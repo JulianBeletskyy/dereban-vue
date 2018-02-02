@@ -9,7 +9,7 @@
                     <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input type="email" v-validate="'required|email'" class="form-control" v-model="user.email" placeholder="email@example.com" required="required" />
+                            <input name="email" type="email" v-validate="'required:true|email'" class="form-control" v-model="user.email" placeholder="email@example.com" required="required" />
                             <span class="input-group-append">
                                 <span class="far fa-envelope input-group-text" area-hidden="true"></span>
                             </span>
@@ -20,7 +20,7 @@
                     <label for="inputPassword" class="col-sm-3 col-form-label">Password:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input type="password" v-validate="'required|min:6'" class="form-control" v-model="user.password" placeholder="Password" required="required" />
+                            <input name="password" type="password" v-validate="'required:true|min:6'" class="form-control" v-model="user.password" placeholder="Password" required="required" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <span class="fas fa-unlock"></span>
@@ -45,15 +45,13 @@
         },
         methods: {
             signUp () {
-                console.log(this.user);
+                if (validator.check(this)) {
+                    this.user.url = location.href + 'activate/{hash}';
+                    request.send('user/registerActivate', this.user, (data) => {
+                    
+                    }, 'post');
+                }
             }
-        },
-        components: {
-            
         }
     }
 </script>
-
-<style>
-
-</style>

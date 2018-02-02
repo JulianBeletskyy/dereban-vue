@@ -5,7 +5,7 @@ var logger = {
 		'timeOut': '2000',
 		'newestOnTop': true
 	},
-	logIt(text, type) {
+	logIt (text, type) {
 		toastr.options = this.option;
 		this[type](text);
 	},

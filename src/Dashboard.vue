@@ -5,16 +5,7 @@
 </template>
 
 <script>
-
 	export default {
-		name: 'Dashboard',
-		data () {
-			return {
-                
-			}
-		},
-		components: {
-			
-		}
+		name: 'Dashboard'
 	}
 </script>

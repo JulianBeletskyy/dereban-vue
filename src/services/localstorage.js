@@ -1,5 +1,5 @@
 var storage = {
-	save(data) {
+	save (data) {
 		var date = new Date();
 		var id = date.getTime() + '' + date.getMilliseconds();
 		var playerObj = {'name': data.name, 'play': data.play, 'id': id};
@@ -7,11 +7,11 @@ var storage = {
 		list.push(playerObj);
 		localStorage.setItem('players', JSON.stringify(list));
 	},
-	get() {
+	get () {
 		var result = localStorage.getItem('players');
 		return result ? JSON.parse(result) : [];
 	},
-	remove(id) {
+	remove (id) {
 		var list = this.get();
 		
 		for (var k in list) {
