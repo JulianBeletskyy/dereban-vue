@@ -12,7 +12,6 @@ var alert = {
 		swal(this.obj);
 	},
 	success (text, timer) {
-
 		this.obj.title = text;
 		this.obj.timer = timer || this.obj.timer;
 		this.obj.type = 'success';

@@ -9,8 +9,19 @@ var request = {
 		});
 
 		req[method](url, data, callback).then((response) => {
+			if (response.data.message) {
+				logger.logIt(response.data.message, 'success');
+			}
             (callback)(response.data.data);
         }).catch((error) => {
+        	if (error.response.data.validate) {
+        		for (var k in error.response.data.validate) {
+        			for (var j in error.response.data.validate[k]) {
+        				logger.logIt(error.response.data.validate[k][j], 'error');
+        			}
+        		}
+        	}
+
         	if (error.response.data.message) {
         		logger.logIt(error.response.data.message, 'error');
         	}

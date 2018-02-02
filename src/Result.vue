@@ -20,14 +20,8 @@
 </template>
 
 <script>
-	import Logger from './components/Logger.vue';
 	export default {
 		name: 'Result',
-		data () {
-			return {
-                
-			}
-		},
 		created() {
 			if ( ! this.results) {
 				router.push('/');
@@ -35,9 +29,6 @@
 				alert.success('Game successfully created');
 			}
 		},
-		props: ['results'],
-		components: {
-			Logger
-		}
+		props: ['results']
 	}
 </script>

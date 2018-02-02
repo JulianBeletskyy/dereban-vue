@@ -13,10 +13,6 @@ Vue.use(BootstrapVue);
 import { default as swal } from 'sweetalert2'
 window.swal = swal;
 
-/*import VueCookie from 'vue-cookie';
-Vue.use(VueCookie);
-window.VueCookie = VueCookie;*/
-
 import router from './router';
 Vue.router = router;
 window.router = router;
@@ -42,9 +38,9 @@ import alert from './services/alert.js';
 Vue.use(alert);
 window.alert = alert;
 
-import langs from './services/langs.js';
+/*import langs from './services/langs.js';
 Vue.use(langs);
-window.langs = langs;
+window.langs = langs;*/
 
 import validator from './services/validator.js';
 Vue.use(validator);
@@ -68,8 +64,6 @@ const app = new Vue({
     components: { App },
 })
 
-router.beforeEach((to, from, next) => {
-	console.log(to);
-	console.log(from);
+/*router.beforeEach((to, from, next) => {
 	next();
-});
+});*/

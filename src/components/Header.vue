@@ -14,7 +14,6 @@
                                 <option value="uk">UK</option>
                             </select>
                         </li>
-
                         <li class="nav-item">
                             <button v-if="logged" @click="logOut" class="btn btn-outline-success my-2 my-sm-0">Log Out</button>
                             <b-dropdown v-if="! logged" id="ddown-right" right text="Sign In" variant="btn btn-outline-success">
@@ -30,7 +29,6 @@
 
 <script>
     import FormSignIn from './FormSignIn.vue';
-
     export default {
         name: 'Header',
         data () {

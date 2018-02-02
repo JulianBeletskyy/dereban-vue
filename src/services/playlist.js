@@ -4,24 +4,24 @@ var playList = {
 		'list': [],
 		'type': ''
 	},
-	add(user) {
+	add (user) {
 		this.result.push(user);
 	},
-	addResults(list, type) {
+	addResults (list, type) {
 		this.playList.list = list;
 		this.playList.type = type;
 	},
-	getResults() {
+	getResults () {
 		return this.playList;
 	},
-	remove(id) {
+	remove (id) {
 		for (var k in this.result) {
 	        if (this.result[k].id == id) {
 	            this.result.splice(k, 1);
 	        }
 	    }
 	},
-	getPlayer(id) {
+	getPlayer (id) {
 		for (var k in this.result) {
             if (this.result[k].id == id) {
                 return true;
@@ -29,10 +29,10 @@ var playList = {
         }
         return false;
 	},
-	getPlayers() {
+	getPlayers () {
 		return this.result;
 	},
-	getCount() {
+	getCount () {
 		return this.result.length;
 	}
 };

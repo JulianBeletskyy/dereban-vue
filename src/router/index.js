@@ -4,6 +4,8 @@ import Main from '../Main.vue';
 import Dashboard from '../Dashboard.vue';
 import Result from '../Result.vue';
 import Recovery from '../Recovery.vue';
+import Activate from '../Activate.vue';
+import ChangePass from '../ChangePass.vue';
 
 Vue.use(Router);
 
@@ -30,9 +32,21 @@ export default new Router({
 			component: Recovery
 		},
 		{
+			path: '/recovery/:hash',
+			name: 'ChangePass',
+			component: ChangePass,
+			props: true
+		},
+		{
 			path: '/results',
 			name: 'Result',
 			component: Result,
+			props: true
+		},
+		{
+			path: '/activate/:hash',
+			name: 'Activate',
+			component: Activate,
 			props: true
 		},
 		{
