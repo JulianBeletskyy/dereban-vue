@@ -7,7 +7,7 @@ var logger = {
 	},
 	logIt (text, type) {
 		toastr.options = this.option;
-		this[type](text);
+		this[type](langs.get(text));
 	},
 	info (text) {
 		toastr.info(text);
