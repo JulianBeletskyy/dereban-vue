@@ -27,19 +27,6 @@ var request = {
         		logger.logIt(error.response.data.message, 'error');
         	}
         });
-	},
-	getLangs(url, callback) {
-		var method = 'get';
-
-		var req = axios.create({
-			baseURL: ''
-		});
-
-		req[method](url, {}, callback).then((response) => {
-            (callback)(response.data);
-        }).catch((error) => {
-        	console.log(error);
-        });
 	}
 };
 
