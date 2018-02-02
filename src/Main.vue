@@ -17,11 +17,6 @@
 
 	export default {
 		name: 'Main',
-		data () {
-			return {
-                
-			}
-		},
 		components: {
 			FastGame,
 			Registration
