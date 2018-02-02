@@ -15,11 +15,6 @@
 
     export default {
         name: 'PlayerCell',
-        data() {
-            return {
-
-            }
-        },
         props: ['player', 'funcRemove'],
         methods: {
             choosePlayer(player) {
