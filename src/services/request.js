@@ -11,7 +11,9 @@ var request = {
 		req[method](url, data, callback).then((response) => {
             (callback)(response.data.data);
         }).catch((error) => {
-        	console.log(error);
+        	if (error.response.data.message) {
+        		logger.logIt(error.response.data.message, 'error');
+        	}
         });
 	},
 	getLangs(url, callback) {

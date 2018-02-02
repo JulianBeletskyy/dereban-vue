@@ -1,6 +1,9 @@
-import Vue from 'vue'
-import BootstrapVue from "bootstrap-vue"
-import App from './App.vue'
+import Vue from 'vue';
+import BootstrapVue from "bootstrap-vue";
+import App from './App.vue';
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+window.VeeValidate = VeeValidate;
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
@@ -42,6 +45,17 @@ window.alert = alert;
 import langs from './services/langs.js';
 Vue.use(langs);
 window.langs = langs;
+
+import validator from './services/validator.js';
+Vue.use(validator);
+window.validator = validator;
+
+import toastr from 'toastr';
+window.toastr = toastr;
+
+import logger from './services/logger.js';
+Vue.use(logger);
+window.logger = logger;
 
 import Vuex from 'vuex';
 
