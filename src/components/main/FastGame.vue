@@ -1,30 +1,30 @@
 <template>
     <div class="card">
         <div class="card-header text-center">
-            Fast Game
+            {{ langs.get('Fast Game') }}
         </div>
         <div class="card-body">
             <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" :class="{'active': tab == 'teams'}" href="javascript:;" aria-selected="true" @click="tab = 'teams'">Teams</a>
+                    <a class="nav-link" :class="{'active': tab == 'teams'}" href="javascript:;" aria-selected="true" @click="tab = 'teams'">{{ langs.get('Teams') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" :class="{'active': tab == 'leader'}" href="javascript:;" role="tab" aria-selected="true" @click="tab = 'leader'">Leaders</a>
+                    <a class="nav-link" :class="{'active': tab == 'leader'}" href="javascript:;" role="tab" aria-selected="true" @click="tab = 'leader'">{{ langs.get('Leaders') }}</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="row">
                     <div class="col-sm-12 col-md-8">
                         <div class="form-group">
-                            <label>Add player:</label>
-                            <label class="float-right">Choosed players: {{ count }}</label>
+                            <label>{{ langs.get('Add player') }}:</label>
+                            <label class="float-right">{{ langs.get('Choosed players') }}: {{ count }}</label>
                             <PlayerAdd :funcAdd="addPlayer"/>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <label v-if="tab == 'teams'">Count in team</label>
-                            <label v-else>Number of Leaders</label>
+                            <label v-if="tab == 'teams'">{{ langs.get('Count in team') }}</label>
+                            <label v-else>{{ langs.get('Number of Leaders') }}</label>
                             <select class="form-control" v-model="countInTeam">
                                 <option v-for="(i, num) in getArray()" :value="num + 1">{{ num + 1 }}</option>
                             </select>
@@ -59,7 +59,8 @@
             return {
                 tab: 'teams',
                 players: [],
-                countInTeam: 1
+                countInTeam: 1,
+                langs: langs
             }
         },
         computed: {
@@ -119,7 +120,7 @@
                     var countTeams = Math.floor(playList.length / this.countInTeam);
 
                     if (countTeams < 2) {
-                        return logger.error('Less then two teams');
+                        return logger.logIt('Less then two teams', 'error');
                     }
 
                     for (var i = 0; i < countTeams; i++) {

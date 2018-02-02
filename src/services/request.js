@@ -5,7 +5,8 @@ var request = {
 		data = data || {};
 
 		var req = axios.create({
-			baseURL: 'http://dereban-api.da/api/v1/'
+			baseURL: 'http://dereban-api.da/api/v1/',
+			headers: {'Authorization': 'Bearer ' + VueCookie.get('token')}
 		});
 
 		req[method](url, data, callback).then((response) => {

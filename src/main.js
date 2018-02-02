@@ -38,9 +38,9 @@ import alert from './services/alert.js';
 Vue.use(alert);
 window.alert = alert;
 
-/*import langs from './services/langs.js';
+import langs from './services/langs.js';
 Vue.use(langs);
-window.langs = langs;*/
+window.langs = langs;
 
 import validator from './services/validator.js';
 Vue.use(validator);
@@ -53,6 +53,10 @@ import logger from './services/logger.js';
 Vue.use(logger);
 window.logger = logger;
 
+import dictionary from './langs/dict.json';
+Vue.use(dictionary);
+window.dictionary = dictionary;
+
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
@@ -63,6 +67,8 @@ const app = new Vue({
 	template: '<App/>',
     components: { App },
 })
+
+
 
 /*router.beforeEach((to, from, next) => {
 	next();

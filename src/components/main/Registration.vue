@@ -1,12 +1,12 @@
 <template>
     <div class="card">
         <div class="card-header text-center">
-            Registration
+            {{ langs.get('Registration') }}
         </div>
         <div class="card-body">
             <form name="form" novalidate="novalidate">
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
+                    <label class="col-sm-3 col-form-label">{{ langs.get('Email') }}:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
                             <input name="email" type="email" v-validate="'required:true|email'" class="form-control" v-model="user.email" placeholder="email@example.com" required="required" />
@@ -17,10 +17,10 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-3 col-form-label">Password:</label>
+                    <label class="col-sm-3 col-form-label">{{ langs.get('Password') }}:</label>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input name="password" type="password" v-validate="'required:true|min:6'" class="form-control" v-model="user.password" placeholder="Password" required="required" />
+                            <input name="password" type="password" v-validate="'required:true|min:6'" class="form-control" v-model="user.password" :placeholder="langs.get('Password')" required="required" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <span class="fas fa-unlock"></span>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form> 
-            <button class="btn btn-outline-success" @click="signUp">Sign Up</button>
+            <button class="btn btn-outline-success" @click="signUp">{{ langs.get('Sign Up') }}</button>
         </div>
     </div>
 </template>
@@ -40,7 +40,8 @@
         name: 'Registration',
         data () {
             return {
-                user: {}
+                user: {},
+                langs: langs
             }
         },
         methods: {
