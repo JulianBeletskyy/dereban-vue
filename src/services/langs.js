@@ -10,7 +10,7 @@ var langs = {
 	init () {
 		return this.dict
 	},
-	get(key) {
+	get (key) {
 		for (var k in dictionary[this.init()]) {
 			if (key.toLowerCase() == k.toLowerCase()) {
 				return dictionary[this.init()][k];
